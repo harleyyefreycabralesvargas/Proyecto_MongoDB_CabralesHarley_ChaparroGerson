@@ -191,14 +191,140 @@ db.medicamentos.countDocuments()
 
 // ¿Cuál es el nombre del medicamento más utilizado?
 
+db.medicamentos.aggregate([{
+    $lookup: {
+        from: "tratamiento",
+        localField: "id_medicamento",
+        foreignField: "id_medicamentos",
+        as: "tratamientos"
+    }
+},
+{
+    $project: {
+        nombre: 1,
+        total_uso: { $size: "$tratamientos" }
+    }
+},
+{
+    $sort: { total_uso: -1 }
+},
+{
+    $limit: 1
+}])
 
-// ¿Qué hospital tiene más personal en total?
+
+// ¿Qué hospital tiene menos personal en total?
+db.hospital.aggregate([
+    {
+      $lookup: {
+        from: "medico",
+        localField: "id_hospital",
+        foreignField: "id_hospital",
+        as: "medico"
+      }
+    },
+    {
+      $lookup: {
+        from: "enfermeros",
+        localField: "id_hospital",
+        foreignField: "id_hospital",
+        as: "enfermeros"
+      }
+    },
+    {
+      $lookup: {
+        from: "directores",
+        localField: "id_director",
+        foreignField: "id_director",
+        as: "director"
+      }
+    },
+    {
+      $lookup: {
+        from: "administrativos",
+        localField: "id_hospital",
+        foreignField: "id_hospital",
+        as: "administrativos"
+      }
+    },
+    {
+      $lookup: {
+        from: "mantenimiento",
+        localField: "id_hospital",
+        foreignField: "id_hospital",
+        as: "mantenimiento" 
+      }
+    },
+    {
+      $addFields: {
+        total_personal: {
+          $add: [
+            { $size: "$medico" },
+            { $size: "$enfermeros" },
+            { $size: "$administrativos" },
+            { $size: "$mantenimiento" },
+            { $size: "$director" } 
+          ]
+        }
+      }
+    },
+    {
+      $project: {
+        nombre: 1,
+        total_personal: 1
+      }
+    },
+    {
+      $sort: { total_personal: 1 } 
+    },
+    {
+      $limit: 1
+    }
+  ])
+  
+
 
 // ¿Cuántas áreas tiene cada hospital?
 
-// ¿Cuántos tratamientos tiene cada historial?
+    
+db.hospital.aggregate([
+    {
+      $project: {
+        nombre: 1,
+        total_areas: { $size: "$id_areas" }
+      }
+    }
+  ])
+  
+
+
+// ¿Cuántos medicos tiene cada hospital?
+
+db.hospital.aggregate([
+    {
+      $project: {
+        nombre: 1,
+        total_medicos: { $size: "$id_medicos" }
+      }
+    }
+  ])
+  
 
 // ¿Cuál es el número de pacientes por rango de edad?
+
+db.pacientes.aggregate([
+    {
+      $bucket: {
+        groupBy: "$edad"
+        boundaries: [0, 19, 36, 51, 200],
+        default: "Otro",
+        output: {
+          total_pacientes: { $sum: 1 }
+        }
+      }
+    }
+  ])
+  
 
 // ¿Cuántos medicamentos hay por primera letra del nombre?
 
@@ -260,9 +386,54 @@ db.visita.aggregate([{
     }
 }])
 // Muestra los tratamientos con los medicamentos detallados.
-
+db.tratamiento.aggregate([{
+    $lookup:{
+        from: "medicamentos",
+        localField: "id_medicamentos",
+        foreignField: "id_medicamento",
+        as: "medicamentos"
+    },
+},
+{
+    $unwind: "$medicamentos"
+},
+{
+    $group: {
+        _id: "$_id",
+        id_tratamiento:{ $first: "$id_tratamiento" },
+        id_visita: { $first: "$id_visita" },
+        id_historial: { $first: "$id_historial" },
+        medicamentos: { $push: "$medicamentos" },
+        fecha:{ $first: "$fecha" }
+      }
+}   
+])
 // Muestra los hospitales con los nombres de los directores.
-
+db.hospital.aggregate([{
+    $lookup: {
+        from: "directores",
+        localField: "id_director",
+        foreignField: "id_directores",
+        as: "directores"
+    }
+},
+{
+    $unwind: "$directores"
+},
+{
+    $project: { 
+id_hospital: 1,XSAS
+nombre: 1,
+direccion:1,
+telefono: 1,
+director:'$directores.nombre',
+id_medicos: 1,
+id_enfermeros: 1,
+id_administrativos: 1,
+id_mantenimiento: 1,
+id_areas:1,
+    }
+}])
 // Muestra los pacientes con los datos del seguro.
 
 // Muestra los hospitales con el detalle de sus áreas.
