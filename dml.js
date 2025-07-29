@@ -1318,6 +1318,22 @@ db.visitas.insertMany([
         fecha: new Date("2025-08-19T15:30:00Z")
     }
 ]);
+db.viitas.aggregate([
+    {
+        $lookup: {
+            from: "tratamientos",
+            localField: "id_visita",
+            foreignField: "id_pacientes",
+            as: "paciente"
+        }
+    },
+    {
+        $project: {
+            id_visita: 1,
+            id_enfermeros,
+        }
+    }
+])
 db.medicamentos.insertMany([
     { id_medicamento: 1, nombre: "Paracetamol", hospital: 1, inventario: 120, descripcion: "Analgésico y antipirético" },
     { id_medicamento: 2, nombre: "Ibuprofeno", hospital: 2, inventario: 85, descripcion: "Antiinflamatorio no esteroideo" },
@@ -2085,3 +2101,75 @@ db.areas.insertMany([
     { id_area: 99, nombre: "Clínica de Hematología Pediátrica" },
     { id_area: 100, nombre: "Unidad de Salud Pública" }
 ]);
+
+
+
+
+db.createView(
+    "vista_pacientes_asignados",
+    "visitas",
+    [{
+        $lookup: {
+            from: "tratamiento",
+            localField: "id_visita",
+            foreignField: "id_visita",
+            as: "tratamientos"
+        },
+    },
+    { $unwind: "$tratamientos"},
+    {
+        $lookup: {
+            from: "historiales",
+            localField: "tratamientos.id_historial",
+            foreignField: "id_historial",
+            as: "historiales"
+        },
+    },
+    { $unwind: "$historiales"},
+    {
+        $lookup: {
+            from: "pacientes",
+            localField: "historiales.id_paciente",
+            foreignField: "id_pacientes",
+            as: "pacientes"
+        },
+    },
+    { $unwind: "$pacientes"},
+    {
+        $project: { "pacientes.id_pacientes": 1, "pacientes.nombre": 1, enfermeros: 1 }
+    }
+    ]
+)
+
+db.visitas.aggregate( [{
+    $lookup: {
+        from: "tratamientos",
+        localField: "id_visita",
+        foreignField: "id_visita",
+        as: "tratamientos"
+    },
+},
+{ $unwind: "$tratamientos"},
+{
+    $lookup: {
+        from: "historiales",
+        localField: "tratamientos.id_historial",
+        foreignField: "id_historial",
+        as: "historiales"
+    },
+},
+{ $unwind: "$historiales"},
+{
+    $lookup: {
+        from: "pacientes",
+        localField: "historiales.id_paciente",
+        foreignField: "id_pacientes",
+        as: "pacientes"
+    },
+},
+{ $unwind: "$pacientes"},
+{
+    $project: { "pacientes.id_pacientes": 1, "pacientes.nombre": 1, id_enfermeros: 1 }
+}
+]
+)

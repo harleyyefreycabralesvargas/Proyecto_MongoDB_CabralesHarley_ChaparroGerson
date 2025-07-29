@@ -1,12 +1,22 @@
-# Proyecto MongoDB
+                                                         Proyecto MongoDB
 
-                  Gerson Steven Chaparro Martinez
-                  Harley Yefrey Cabrales Vargas
-                                          
-                               P1    
-                   Pedro Felipe Gómez Bonilla
-                Campuslands Artemis - Ruta Node
-                     Bucaramanga, Santander 
+
+                                                        
+
+                                                 Gerson Steven Chaparro Martinez
+                                                 
+                                                  Harley Yefrey Cabrales Vargas
+                                                  
+                                                  
+                                                               S1  
+                                                               
+                                                               
+                                                   Pedro Felipe Gómez Bonilla
+                                                   
+                                                   
+                                               Campuslands Artemis - Ruta Node
+                                               
+                                                    Bucaramanga, Santander 
                          
                                        
 
@@ -15,7 +25,7 @@
 
 
 
-## Introducción
+##                                                                                                Introducción
 
 Este documento servirá como una guía detallada del proceso completo de diseño, estructuración e implementación de una base de datos para un sistema de salud. El objetivo principal es gestionar eficazmente los datos e información generados por los hospitales ,pacientes, médicos, tratamientos, medicamentos, historiales clínicos  y personal administrativo  administrados por el sistema hospitalario  pertinentes.  
 Inicialmente, se analizará el caso de estudio junto con sus requerimientos específicos. A partir de esta investigación, se procederá a desarrollar un modelo conceptual detallado donde se identificarán las entidades principales, sus atributos y las relaciones entre ellas. Este paso determina las bases para comprender la estructura esencial de la gestión del sistema hospitalario  
@@ -148,21 +158,23 @@ Para entender el diseño del modelo conceptual, se debe tener en cuenta los elem
 ❖ id_tratamiento  
 ❖ id_medicamentos  
 ❖ id_historial  
-❖ id_visita  
+❖ id_visita
+❖ nombre
+❖ valoracion
 ❖ fecha  
 
-10. medicamento  
+11. medicamento  
 ❖ id_medicamentos  
 ❖ nombre  
 ❖ inventario  
 ❖ descripcion  
 
-11. historial  
+12. historial  
 ❖ id_historial  
 ❖ id_paciente  
 ❖ id_tratamiento  
 
-12. paciente  
+13. paciente  
 ❖ id_paciente  
 ❖ nombre  
 ❖ edad  
@@ -170,7 +182,7 @@ Para entender el diseño del modelo conceptual, se debe tener en cuenta los elem
 ❖ id_seguro  
 ❖ telefono  
 
-13. seguro  
+14. seguro  
 ❖ id_seguro  
 ❖ nombre  
 ❖ telefono  
@@ -185,7 +197,136 @@ Se realizó las relaciones y cardinalidades respectivas del modelo conceptual co
 - Paciente – Historial Clínico: 1 paciente → 1 historial (que puede tener muchos diagnósticos y tratamientos).  
 - Visita Médica – Paciente: muchos a 1 (varias visitas para un mismo paciente y un mismo médico puede atender muchas visitas).  
 
-## Gráfica
+## Modelo conceptual
+
+![Modelo conceptual](storage/modeloConceptual.webp)
+
+## Modelo Logico
+
+![alt text](storage/modeloLogico.webp)
+
+## Modelo Fisico
+```mermaid
+erDiagram
+MEDICOS {
+        INT id_medicos PK
+        STRING nombre
+        INT salario
+        STRING tipo
+    }
+DIRECTORES {
+        INT id_directores PK
+        STRING nombre
+        INT salario
+        STRING tipo
+    }
+
+    ENFERMEROS {
+        INT id_enfermeros PK
+        STRING nombre
+        INT salario
+        STRING tipo
+    }
+
+    ADMINISTRATIVOS {
+        INT id_administrativos PK
+        STRING nombre
+        INT salario
+        STRING tipo
+    }
+MANTENIMIENTO {
+        INT id_mantenimiento PK
+        STRING nombre
+        INT salario
+        STRING tipo
+    }
+
+    AREAS {
+        INT id_area PK
+        STRING nombre
+        STRING descripcion
+    }
+
+    HOSPITAL {
+        INT id_hospital PK
+        STRING nombre
+        STRING direccion
+        STRING telefono
+        INT id_director FK
+        INT[] id_medicos FK
+        INT[] id_enfermeros FK
+        INT[] id_administrativos FK
+        INT[] id_mantenimiento FK
+        INT[] id_areas FK
+    }
+
+    VISITA {
+        INT id_visita PK
+        INT id_hospital FK
+        INT id_medico FK
+        INT[] id_enfermera FK
+        STRING observaciones
+        DATE fecha
+    }
+
+    TRATAMIENTOS {
+        INT id_tratamiento PK
+        INT[] id_medicamentos FK
+        INT id_historial FK
+        INT id_visita FK
+        STRING nombre
+        STRING valoracion
+        DATE fecha
+    }
+MEDICAMENTOS {
+        INT id_medicamentos PK
+        STRING nombre
+        INT inventario
+        STRING descripcion
+    }
+
+    HISTORIAL {
+        INT id_historial PK
+        INT id_paciente FK
+        INT id_tratamiento FK
+    }
+
+    PACIENTES {
+        INT id_pacientes PK
+        STRING nombre
+        INT edad
+        STRING direccion
+        INT id_seguro FK
+        STRING telefono
+    }
+
+    SEGURO {
+        INT id_seguro PK
+        STRING nombre
+        STRING telefono
+    }
+%% Relaciones
+    HOSPITAL ||--|| DIRECTORES : tiene
+    HOSPITAL ||--|{ MEDICOS : contiene
+     HOSPITAL ||--|{ ENFERMEROS : contiene
+    HOSPITAL ||--|{ ADMINISTRATIVOS : contiene
+    HOSPITAL ||--|{ MANTENIMIENTO : contiene
+    HOSPITAL ||--|{ AREAS : contiene
+
+    VISITA }|--|| HOSPITAL : pertenece
+    
+
+    TRATAMIENTOS }|--|| MEDICAMENTOS : utiliza
+    
+    TRATAMIENTOS }|--|| VISITA : corresponde_a
+
+    HISTORIAL }|--|| PACIENTES : pertenece_a
+    HISTORIAL }|--|| TRATAMIENTOS : contiene
+
+    PACIENTES }|--|| SEGURO : afiliado_a
+
+```
+
 
 
 
