@@ -97,7 +97,7 @@ db.createCollection("areas", {
 db.areas.createIndex({ id_area: 1 }, { unique: true })
 
 
-db.createCollection("hospital", {
+db.createCollection("hospitales", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -136,10 +136,10 @@ db.createCollection("hospital", {
         }
     }
 });
-db.id_hospital.createIndex({ id_hospital: 1 }, { unique: true })
+db.hospitales.createIndex({ id_hospital: 1 }, { unique: true })
 
 
-db.createCollection("visita", {
+db.createCollection("visitas", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -158,17 +158,18 @@ db.createCollection("visita", {
         }
     }
 });
-db.visita.createIndex({ id_visita: 1 }, { unique: true })
+db.visitas.createIndex({ id_visita: 1 }, { unique: true })
 
 
 db.createCollection("medicamentos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["id_medicamento", "nombre", "inventario", "descripcion"],
+            required: ["id_medicamento", "nombre", "hospital", "inventario", "descripcion"],
             properties: {
                 id_medicamento: { bsonType: "int" },
                 nombre: { bsonType: "string" },
+                hospital:{bsonType:"int"},
                 inventario: { bsonType: "int" },
                 descripcion: { bsonType: "string" },
             },
@@ -178,11 +179,11 @@ db.createCollection("medicamentos", {
 db.medicamentos.createIndex({ id_medicamento: 1 }, { unique: true })
 
 
-db.createCollection("tratamiento", {
+db.createCollection("tratamientos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["id_tratamiento", "id_medicamentos", "id_historial", "id_visita", "fecha"],
+            required: ["id_tratamiento", "id_medicamentos","nombre","valoracion", "id_historial", "id_visita", "fecha"],
             properties: {
                 id_tratamiento: { bsonType: "int" },
                 id_medicamentos: {
@@ -193,15 +194,17 @@ db.createCollection("tratamiento", {
                 },
                 id_historial: { bsonType: "int" },
                 id_visita: { bsonType: "int" },
+                nombre: { bsonType: "string" },
+                valoracion: { bsonType: "string" },
                 fecha: { bsonType: "date" },
             },
         },
     },
 })
-db.tratamiento.createIndex({ id_tratamiento: 1, id_visita: 1 }, { unique: true })
+db.tratamientos.createIndex({ id_tratamiento: 1, id_visita: 1 }, { unique: true })
 
 
-db.createCollection("historial", {
+db.createCollection("historiales", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -214,7 +217,7 @@ db.createCollection("historial", {
         },
     },
 })
-db.historial.createIndex({ id_tratamiento: 1 }, { unique: true })
+db.historiales.createIndex({ id_tratamiento: 1 }, { unique: true })
 
 
 db.createCollection("pacientes", {

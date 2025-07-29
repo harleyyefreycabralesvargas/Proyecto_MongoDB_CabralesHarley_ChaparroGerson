@@ -1,129 +1,191 @@
-# Proyecto BBDD Sistema Hospitalario. 
+# Proyecto MongoDB
 
-El objetivo del proyecto es diseñar y desarrollar un sistema de base de datos en **MongoDB** que permita gestionar de manera eficiente todas las operaciones relacionadas con la administración de un **Sistema Hospitalario**. Dicho sistema incluirá la gestión de hospitales, pacientes, médicos, tratamientos, medicamentos, visitas médicas, historiales clínicos, áreas especializadas y personal administrativo. 
-
-
-### Requerimientos del Proyecto
-
-#### 1. Modelado de la Base de Datos
-
-El sistema debe cumplir con las siguientes características estructurales y funcionales:
-
-##### Estructura del Sistema
-
-- Un hospital puede tener múltiples áreas especializadas (Cardiología, Neurología, etc.).
-- Cada hospital tiene un director general, pero un director puede supervisar varios hospitales.
-- Cada hospital tiene un conjunto de médicos, enfermeras y personal administrativo.
-- Los hospitales deben contar con un historial detallado de pacientes y tratamientos realizados.
-
-##### Pacientes
-
-- Los pacientes se identifican por su número de historia clínica, nombre, dirección, teléfono, correo electrónico y seguros médicos.
-- Los historiales médicos incluyen diagnósticos, tratamientos realizados y resultados obtenidos.
-
-##### Médicos y Personal
-
-- Los médicos se identifican por su número de colegiatura, nombre, especialidad, teléfono, correo electrónico y salario.
-- Se definen los siguientes tipos de personal:
-- **001: Director General:** Gestión general del hospital.
-- **002: Médico Especialista:** Atiende pacientes y realiza diagnósticos.
-- **003: Enfermero/a:** Asiste a médicos y cuida a los pacientes.
-- **004: Personal Administrativo:** Gestión de recursos y logística.
-- **005: Personal de Mantenimiento:** Mantenimiento y limpieza de las instalaciones.
-
-##### Tratamientos y Medicamentos
-
-- Los tratamientos se identifican por su nombre, descripción, área médica relacionada y costo.
-- Los medicamentos se almacenan por nombre, fabricante, tipo, y disponibilidad en inventario.
-
-##### Visitas Médicas
-
-- Las visitas médicas se registran con fecha, hora, médico asignado, paciente atendido y diagnóstico.
-- Los pacientes pueden tener múltiples visitas médicas a lo largo del tiempo.
-
-###  
-
-### 2. Consultas MongoDB
-
-Implementar **100 consultas MongoDB** enfocadas en:
-
-- Estado actual de hospitales: cantidad de médicos, enfermeras y áreas especializadas por hospital.
-- Inventarios de medicamentos por tipo y disponibilidad.
-- Historiales clínicos de pacientes por diagnóstico y tratamientos realizados.
-- Actividades del personal según área médica y rol.
-- Gestión de visitas médicas y estadísticas de enfermedades comunes.
-- Al menos **20 consultas deben incluir agregaciones avanzadas** (`$lookup`, `$unwind`, `$group`, `$project`, `$regex`).
-
-###  
-
-### 3. Funciones JavaScript (UDF - Simuladas)
-
-Crear **20 funciones simuladas** que se implementen como consultas reutilizables en MongoDB Compass o mediante funciones almacenadas en la base de datos (`db.system.js.save()`).
-
-Ejemplos:
-
-- Cálculo de inventarios de medicamentos por hospital.
-- Generación de reportes de visitas médicas por diagnóstico.
-- Obtención de estadísticas de tratamientos realizados por hospital.
-
-###  
-
-### 4. Control de Acceso y Roles de Usuario
-
-Definir **5 tipos de usuarios con permisos específicos utilizando mecanismos de autenticación y roles de MongoDB:**
-
-- **Director General:** Acceso total.
-- **Médico Especialista:** Acceso a pacientes y diagnósticos.
-- **Enfermero/a:** Acceso limitado a pacientes asignados.
-- **Personal Administrativo:** Gestión de recursos y logística.
-- **Personal de Mantenimiento:** Acceso a tareas de infraestructura.
+                  Gerson Steven Chaparro Martinez
+                  Harley Yefrey Cabrales Vargas
+                                          
+                               P1    
+                   Pedro Felipe Gómez Bonilla
+                Campuslands Artemis - Ruta Node
+                     Bucaramanga, Santander 
+                         
+                                       
 
 
 
-Resultado esperado
-
-Además de la implementación de la base de datos y la creación de las consultas, procedimientos almacenados y demás, los estudiantes deberán entregar el proyecto a través de un repositorio privado en GitHub. El repositorio deberá estar bien estructurado, contener toda la documentación necesaria y los archivos con el código correspondientes.
 
 
 
-### 1. **Repositorio en GitHub:**
+## Introducción
 
-- Crear un **repositorio privado** en GitHub. Asegúrate de invitar al trainer como colaborador para que pueda revisar el trabajo.
-- El repositorio debe seguir una estructura clara y organizada. Los archivos JSON/BSON deben estar divididos en carpetas según su propósito (e.g., DDL, DML, procedimientos, funciones, triggers, etc.).
-- El **README.md** debe incluir una descripción detallada del proyecto, instrucciones para configurar la base de datos, cómo ejecutar las consultas, procedimientos, funciones y eventos, así como cualquier otra consideración importante.
+Este documento servirá como una guía detallada del proceso completo de diseño, estructuración e implementación de una base de datos para un sistema de salud. El objetivo principal es gestionar eficazmente los datos e información generados por los hospitales ,pacientes, médicos, tratamientos, medicamentos, historiales clínicos  y personal administrativo  administrados por el sistema hospitalario  pertinentes.  
+Inicialmente, se analizará el caso de estudio junto con sus requerimientos específicos. A partir de esta investigación, se procederá a desarrollar un modelo conceptual detallado donde se identificarán las entidades principales, sus atributos y las relaciones entre ellas. Este paso determina las bases para comprender la estructura esencial de la gestión del sistema hospitalario  
+A continuación, se realizará la conversión del modelo conceptual al modelo lógico. Este último ofrece una representación más precisa de cómo se organizará la información, facilitando una comprensión clara de la base de datos en desarrollo. .  
+Posteriormente, se llevará a cabo la conversión del modelo lógico al modelo físico, el cual define la implementación real de entidades, atributos y relaciones, incorporando detalles técnicos como los tipos de datos adecuados para cada elemento.
+
+Finalmente, se detallarán algunos procedimientos, funciones, consultas, triggers y eventos que complementarán la funcionalidad del sistema de información desarrollado, asegurando así su eficiencia y utilidad para el Sistema Hospitalario.  
+Con estos pasos y elementos, se garantiza una guía completa y efectiva para el diseño y desarrollo de la base de datos necesaria para la gestión eficiente del Sistema Hospitalario.  
+
+## Caso de Estudio
+
+El Sistema Hospitalario nos ha pedido crear un diseño inicial de un Software que permita gestionar los datos e información acerca  pacientes, médicos, tratamientos, medicamentos, visitas médicas, historiales clínicos, áreas especializadas y personal administrativo, por lo que comenzamos estructurando los requerimientos dados:
+
+### 1. Estructura del Sistema
+
+- Un hospital puede tener múltiples áreas especializadas (Cardiología, Neurología, etc.).  
+- Cada hospital tiene un director general, pero un director puede supervisar varios hospitales.  
+- Cada hospital tiene un conjunto de médicos, enfermeras y personal administrativo.  
+- Los hospitales deben contar con un historial detallado de pacientes y tratamientos realizados.  
+
+### 2. Pacientes
+
+- Los pacientes se identifican por su número de historia clínica, nombre, dirección, teléfono, correo electrónico y seguros médicos.  
+- Los historiales médicos incluyen diagnósticos, tratamientos realizados y resultados obtenidos.  
+
+### 3. Médicos y Personal
+
+- Los médicos se identifican por su número de colegiatura, nombre, especialidad, teléfono, correo electrónico y salario.  
+- Se definen los siguientes tipos de personal:  
+  - **001: Director General:** Gestión general del hospital.  
+  - **002: Médico Especialista:** Atiende pacientes y realiza diagnósticos.  
+  - **003: Enfermero/a:** Asiste a médicos y cuida a los pacientes.  
+  - **004: Personal Administrativo:** Gestión de recursos y logística.  
+  - **005: Personal de Mantenimiento:** Mantenimiento y limpieza de las instalaciones.  
+
+### 4. Tratamientos y Medicamentos
+
+- Los tratamientos se identifican por su nombre, descripción, área médica relacionada y costo.  
+- Los medicamentos se almacenan por nombre, fabricante, tipo, y disponibilidad en inventario.  
+
+### 5. Visitas Médicas
+
+- Las visitas médicas se registran con fecha, hora, médico asignado, paciente atendido y diagnóstico.  
+- Los pacientes pueden tener múltiples visitas médicas a lo largo del tiempo.  
+
+Con base en la información anterior, se procederá a crear una base de datos en MongoDB con el objetivo de agrupar y relacionar los datos de los hospitales , así como la información y gestión de cada uno de sus requerimientos.  
+
+## Instalación General
+
+Los archivos relacionados con la BBDD de los hospitales, se encuentran en la plataforma <Githud>  estos archivos se encuentran en formato NoSQL y se dividen en 6 partes:
+
+❖ ModeloFisico.NoSQL : Este archivo contiene el script para crear la base de datos y definir las tablas correspondientes.  
+❖ Inserciones.NoSQL : Este archivo contiene ejemplos de datos para gestionar los parques naturales, facilitando la inserción inicial de información.  
+❖ Consultas.NoSQL : En este archivo se encuentran las consultas relacionadas con los departamentos, parques e investigaciones realizadas en los parques naturales.  
+❖ funcionesYprocedimientos.NoSQL : Se definen los procedimientos y funciones para añadir, actualizar y mostrar datos dentro del sistema.  
+❖ Triggers_Eventos_Transacciones.NoSQL : Contiene los triggers, eventos y transacciones configurados para registrar la entrada de cada visitante mediante la inserción y actualización de datos específicos.  
+❖ usuarios.NoSQL : Aquí se gestionan la creación de usuarios y la asignación de permisos necesarios para acceder y visualizar los datos pertinentes.  
+
+## Planificación
+
+## Ejecución
+
+Una vez se analizó la información requerida por el Sistema Hospitalario, se inició la creación del modelo conceptual. Este modelo proporciona una descripción de alto nivel de las necesidades de información que están detrás del diseño de una base de datos. Representa los conceptos principales de la base de datos y las relaciones entre ellos.
+
+### Construcción del Modelo Conceptual
+
+Se diseñó el modelo conceptual identificando cada una de las entidades, sus atributos y las relaciones entre ellas. Este modelo conceptual proporciona una visión clara y estructurada de cómo se organizarán y conectarán los diferentes elementos de la base de datos.  
+Para entender el diseño del modelo conceptual, se debe tener en cuenta los elementos básicos de un modelo original.  
+
+## Descripción
+
+### Las Entidades y Atributos
+
+1. directores  
+❖ id_directores  
+❖ nombres  
+❖ salario  
+❖ tipo  
+
+2. medicina  
+❖ id_medicos  
+❖ nombre  
+❖ salario  
+❖ tipo  
+
+3. enfermeros  
+❖ id_enfermeros  
+❖ nombre  
+❖ salario  
+❖ tipo  
+
+4. adminitrativos  
+❖ id_administrativos  
+❖ nombre  
+❖ salario  
+❖ tipo  
+
+5. Mantenimiento  
+❖ id_mantenimiento  
+❖ nombre  
+❖ salario  
+❖ tipo  
+
+6. Areas  
+❖ id_areas  
+❖ nombre  
+❖ descripción  
+
+7. hospital  
+❖ id_hospital  
+❖ nombre  
+❖ direccion  
+❖ telefono  
+❖ id_director  
+❖ id_medicos  
+❖ id_enfermeros  
+❖ id_administrativos  
+❖ id_mantenimiento  
+❖ id_areas  
+
+8. visita  
+❖ id_visita  
+❖ id_hospital  
+❖ id_medico  
+❖ id_enfermeros  
+❖ observaciones  
+❖ fecha  
+
+9. tratamiento  
+❖ id_tratamiento  
+❖ id_medicamentos  
+❖ id_historial  
+❖ id_visita  
+❖ fecha  
+
+10. medicamento  
+❖ id_medicamentos  
+❖ nombre  
+❖ inventario  
+❖ descripcion  
+
+11. historial  
+❖ id_historial  
+❖ id_paciente  
+❖ id_tratamiento  
+
+12. paciente  
+❖ id_paciente  
+❖ nombre  
+❖ edad  
+❖ direccion  
+❖ id_seguro  
+❖ telefono  
+
+13. seguro  
+❖ id_seguro  
+❖ nombre  
+❖ telefono  
+
+## Relaciones y Cardinalidades
+
+Se realizó las relaciones y cardinalidades respectivas del modelo conceptual con sus entidades para tener mejor visualización de la base de datos:
+
+- Hospital – Área: 1 hospital → muchas áreas.  
+- Hospital – Personal: 1 hospital → muchos empleados.  
+- Hospital – Director: 1 hospital → 1 director (que es parte del personal).  
+- Paciente – Historial Clínico: 1 paciente → 1 historial (que puede tener muchos diagnósticos y tratamientos).  
+- Visita Médica – Paciente: muchos a 1 (varias visitas para un mismo paciente y un mismo médico puede atender muchas visitas).  
+
+## Gráfica
 
 
 
-### 2. **Estructura del Repositorio:**
-
-El repositorio debe estar organizado de la siguiente manera:
-
-- ddl.json (Creación de base de datos con tabls y relaciones)
-- dml.json (inserciones de datos)
-- dql_select.json (Consultas)
-- dql_funciones.json (funciones)
-- Readme.md
-- Diagrama.jpg (Modelo de datos)
-
-###  
-
-### 3. **Contenido del README.md**, El archivo README.md debe estar bien estructurado y contener los siguientes apartados:
-
-
-
-- **Descripción del Proyecto:** Explicación clara y concisa del proyecto "Tienda de disfraces" (O el nombre que le hayan dado a su proyecto). Incluye el propósito de la base de datos y una descripción general de las funcionalidades que se han implementado.
-- **Requisitos del Sistema:** Detalla el software necesario para ejecutar los scripts (e.g., MongoDB versión X.X, cliente MongoDB Compass, etc.).
-- **Instalación y Configuración:** Instrucciones paso a paso para configurar el entorno, cargar la base de datos y ejecutar los scripts de la baes de datos. Asegúrate de incluir: Cómo ejecutar el archivo ddl.sql para generar la estructura de la base de datos, Cómo cargar los datos iniciales con el archivo dml.json, Instrucciones para ejecutar las consultas, funciones, etc.
-- **Estructura de la Base de Datos:** Incluir un resumen de las tablas creadas, con una breve descripción de su propósito. No es necesario describir cada campo, pero debe quedar claro cómo interactúan las tablas entre sí.
-- **Ejemplos de Consultas**: Proporcionar ejemplos de algunas consultas (básicas y avanzadas) que se pueden ejecutar en la base de datos, explicando qué información generan.
-- **Funciones:** Explicar brevemente la funcionalidad de las funciones creadas. Incluir ejemplos de cómo se pueden usar en el contexto del sistema.
-- **Roles de Usuario y Permisos:** Describir los 5 roles de usuario creados en el sistema, junto con los permisos asignados a cada uno. Incluir instrucciones sobre cómo crear usuarios en MongoDB y cómo asignarles los roles correspondientes.
-- **Contribuciones:** Si el proyecto fue desarrollado en grupo, cada integrante debe indicar qué parte del trabajo realizó.
-- **Licencia y Contacto:** Incluir una sección sobre la licencia del proyecto (opcional) y cómo contactarte en caso de preguntas o problemas con la implementación.
-
-###  
-
-### 4. **Archivos JSON:**
-
-- Todos los scripts para MongoDB necesarios deben estar incluidos en las carpetas adecuadas. Los nombres de los archivos deben ser claros y descriptivos.
-- Los scripts deben estar bien documentados con comentarios que expliquen el propósito de cada sección, cómo funcionan las consultas o procedimientos, y cualquier otro detalle que facilite su comprensión.
