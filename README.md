@@ -1542,7 +1542,7 @@ sudo nano /etc/mongod.conf
 
 
 
-nano /etc/mongod.conf
+
  ❖ Agregar la sección de seguridad al final del archivo:
 ```js
 
