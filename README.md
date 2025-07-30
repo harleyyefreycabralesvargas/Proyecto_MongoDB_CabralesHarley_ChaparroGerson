@@ -1606,7 +1606,7 @@ function insertarDocumentoParaMedicamentos(id, nombre, hospital, cantidad) {
   db.medicamentos.insertOne({
     id_medicamento: id,
     nombre: nombre,
-    id_hospital: hospital,
+    hospital: hospital,
     inventario: cantidad
   });
   print("Documento insertado.");
