@@ -1505,8 +1505,7 @@ permitidos, y funciones/procedimientos a los que tienen acceso.
 | Mantenimiento    | Acceso a infraestructura                           | db.createRole({<br>&nbsp;&nbsp;role: "mantenimiento_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "infraestructura" }, actions: ["find", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "mantenimiento",<br>&nbsp;&nbsp;pwd: "mantenimiento1",<br>&nbsp;&nbsp;roles: [{ role: "mantenimiento_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                                                                                                              | mongosh "mongodb://mantenimiento:mantenimiento1@localhost:27017/SistemaHospitalario"                 |
 
 
-
-## 1. Para acceder a los usuarios necesitamos crearlos sin  ninguna funcion
+### 1. Para acceder a los usuarios necesitamos crearlos sin  ninguna funcion
 ## 2.Activar el autorizamiento de usuarios
 ❖ Salimos de mongo con exit
 ❖ Vamos al archivo mongod con los 2 siguientes comandos sudo nano /etc/mongod.conf o nano /etc/mongod.conf y si pide contraseña la pondremos

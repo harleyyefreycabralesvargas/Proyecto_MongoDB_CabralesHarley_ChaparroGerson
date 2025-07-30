@@ -817,9 +817,9 @@ db.hospitales.insertMany([
     }
 
 ]);
+
 db.visitas.insertMany([
-    {
-        id_visita: 1,
+    {id_visita: 1,
         id_hospital: 1,
         id_medico: 5,
         id_enfermeros: [15, 23],
