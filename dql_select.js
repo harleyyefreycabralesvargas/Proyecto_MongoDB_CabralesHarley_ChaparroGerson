@@ -740,9 +740,6 @@ db.s.aggregate([
 ]);
 
 
-
-
-
 //58 Muestra los médicos con los hospitales donde trabajan.
 
 db.medicos.aggregate([
@@ -756,7 +753,7 @@ db.medicos.aggregate([
   }
 ])
 
-//9 Muestra los administrativos con los hospitales donde trabajan.
+//59 Muestra los administrativos con los hospitales donde trabajan.
 db.administrativos.aggregate([
   {
     $lookup: {
@@ -767,7 +764,17 @@ db.administrativos.aggregate([
     }
   }
 ])
-
+//60 Muestra las personas de mantenimiento con los hospitales donde trabajan.
+db.administrativos.aggregate([
+  {
+    $lookup: {
+      from: "hospitales",
+      localField: "id_mantenimiento",
+      foreignField: "id_mantenimiento",
+      as: "hospitales"
+    }
+  }
+])
 
 // ➕ Consultas de inserción (61–80)
 //61 Inserta un nuevo médico llamado "Luis Rojas".

@@ -1,5 +1,21 @@
 use SitemaHospitalario;
 
+db.createCollection("directores", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["id_directores", "nombre", "salario", "tipo"],
+            properties: {
+                id_directores: { bsonType: "int" },
+                nombre: { bsonType: "string" },
+                salario: { bsonType: "int" },
+                tipo: { bsonType: "string" }
+
+            },
+        },
+    },
+})
+db.directores.createIndex({ id_directores: 1 }, { unique: true })
 
 db.createCollection("medicos", {
     validator: {
@@ -48,22 +64,6 @@ db.createCollection("administrativos", {
     },
 })
 db.administrativos.createIndex({ id_administrativos: 1 }, { unique: true })
-db.createCollection("directores", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: ["id_directores", "nombre", "salario", "tipo"],
-            properties: {
-                id_directores: { bsonType: "int" },
-                nombre: { bsonType: "string" },
-                salario: { bsonType: "int" },
-                tipo: { bsonType: "string" }
-
-            },
-        },
-    },
-})
-db.directores.createIndex({ id_directores: 1 }, { unique: true })
 db.createCollection("mantenimiento", {
     validator: {
         $jsonSchema: {
@@ -95,6 +95,47 @@ db.createCollection("areas", {
 });
 db.areas.createIndex({ id_area: 1 }, { unique: true })
 
+db.createCollection("infraestructura", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "id_infraestructura",
+        "id_hospital",
+        "id_personas_mantenimiento",
+        "nombre_lugar",
+        "observacion",
+        "estado"
+      ],
+      properties: {
+        id_infraestructura: {
+          bsonType: "int"
+        },
+        id_hospital: {
+          bsonType: "int"
+        },
+        id_personas_mantenimiento: {
+            bsonType: "array",
+            items: {
+                bsonType: "int",
+            },
+        },
+        nombre_lugar: {
+          bsonType: "string"
+        },
+        observacion: {
+          bsonType: "string"
+        },
+        estado: {
+          bsonType: "string",
+          enum: ["pendiente", "en reparacion", "reparado"]
+        }
+      }
+    }
+  }
+});
+ñ
+db.infraestructura.createIndex({ id_infraestructura: 1 }, { unique: true })
 
 db.createCollection("hospitales", {
     validator: {
@@ -262,45 +303,3 @@ db.createCollection("seguros", {
 })
 db.seguros.createIndex({ id_seguro: 1 }, { unique: true })
 
-
-db.createCollection("infraestructura", {
-  validator: {
-    $jsonSchema: {
-      bsonType: "object",
-      required: [
-        "id_infraestructura",
-        "id_hospital",
-        "id_personas_mantenimiento",
-        "nombre_lugar",
-        "observacion",
-        "estado"
-      ],
-      properties: {
-        id_infraestructura: {
-          bsonType: "int"
-        },
-        id_hospital: {
-          bsonType: "int"
-        },
-        id_personas_mantenimiento: {
-            bsonType: "array",
-            items: {
-                bsonType: "int",
-            },
-        },
-        nombre_lugar: {
-          bsonType: "string"
-        },
-        observacion: {
-          bsonType: "string"
-        },
-        estado: {
-          bsonType: "string",
-          enum: ["pendiente", "en reparacion", "reparado"]
-        }
-      }
-    }
-  }
-});
-ñ
-db.infraestructura.createIndex({ id_infraestructura: 1 }, { unique: true })
