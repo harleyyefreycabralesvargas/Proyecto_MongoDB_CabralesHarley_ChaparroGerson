@@ -42,7 +42,7 @@
   - [Construcción del Modelo Físico](#construcción-del-modelo-físico)
   - [Descripción](#descripción-1)
   - [Colecciones](#colecciones)
-  - [## Construcción del Diagrama UML](#-construcción-del-diagrama-uml)
+- [Construcción del Diagrama UML](#construcción-del-diagrama-uml)
   - [Descripción](#descripción-2)
   - [Grafica](#grafica)
 - [Descripción del sistema](#descripción-del-sistema)
@@ -749,7 +749,7 @@ db.createCollection("seguros", {
     },
 })
 ```
-### ## Construcción del Diagrama UML
+## Construcción del Diagrama UML
 
 Se ha diseñado un diagrama UML tomando como referencia la normalización para entender
 mejor los diseños, la arquitectura del código y la implementación propuesta. Este enfoque nos
