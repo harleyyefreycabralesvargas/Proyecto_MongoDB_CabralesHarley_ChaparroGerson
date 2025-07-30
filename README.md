@@ -1505,25 +1505,7 @@ permitidos, y funciones/procedimientos a los que tienen acceso.
 | Mantenimiento    | Acceso a infraestructura                           | db.createRole({<br>&nbsp;&nbsp;role: "mantenimiento_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "infraestructura" }, actions: ["find", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "mantenimiento",<br>&nbsp;&nbsp;pwd: "mantenimiento1",<br>&nbsp;&nbsp;roles: [{ role: "mantenimiento_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                                                                                                              | mongosh "mongodb://mantenimiento:mantenimiento1@localhost:27017/SistemaHospitalario"                 |
 
 
-### 1. Crear usuarios sin funciones (previo a activar autenticación)
-Antes de activar la autenticación, es necesario crear los usuarios sin roles, para luego asignárselos una vez el sistema esté configurado.
 
-Ejemplo:
-```js
-use admin
-db.createUser({
-  user: "admin",
-  pwd: "contrasena1",
-  roles: []
-})
-
-use clientes
-db.createUser({
-  user: "usuario1",
-  pwd: "contrasena2",
-  roles: []
-})
-```
 
 ## 1. Crear usuarios sin funciones (previo a activar autenticación)
 Antes de activar la autenticación, es necesario crear los usuarios sin roles, para luego asignárselos una vez el sistema esté configurado.
