@@ -1,3 +1,5 @@
+use SistemaHospitalario;
+
 db.directores.insertMany([
     { id_directores: 1, nombre: "Carlos Gómez", salario: 9500000, tipo: "001" },
     { id_directores: 2, nombre: "Laura Fernández", salario: 10700000, tipo: "001" },
@@ -210,108 +212,7 @@ db.mantenimiento.insertMany([
     { id_mantenimiento: 50, nombre: "Dafne Palacios", salario: 2800000, tipo: "006" }
 ])
 
-[
-    { "id_area": 1, "nombre": "Urgencias" },
-    { "id_area": 2, "nombre": "Pediatría" },
-    { "id_area": 3, "nombre": "Cardiología" },
-    { "id_area": 4, "nombre": "Ginecología" },
-    { "id_area": 5, "nombre": "Traumatología" },
-    { "id_area": 6, "nombre": "Radiología" },
-    { "id_area": 7, "nombre": "Oncología" },
-    { "id_area": 8, "nombre": "Urología" },
-    { "id_area": 9, "nombre": "Neurología" },
-    { "id_area": 10, "nombre": "Dermatología" },
-    { "id_area": 11, "nombre": "Otorrinolaringología" },
-    { "id_area": 12, "nombre": "Oftalmología" },
-    { "id_area": 13, "nombre": "Cirugía General" },
-    { "id_area": 14, "nombre": "Psiquiatría" },
-    { "id_area": 15, "nombre": "Neumología" },
-    { "id_area": 16, "nombre": "Reumatología" },
-    { "id_area": 17, "nombre": "Hematología" },
-    { "id_area": 18, "nombre": "Endocrinología" },
-    { "id_area": 19, "nombre": "Gastroenterología" },
-    { "id_area": 20, "nombre": "Nefrología" },
-    { "id_area": 21, "nombre": "Medicina Interna" },
-    { "id_area": 22, "nombre": "Unidad de Cuidados Intensivos" },
-    { "id_area": 23, "nombre": "Medicina Familiar" },
-    { "id_area": 24, "nombre": "Laboratorio Clínico" },
-    { "id_area": 25, "nombre": "Banco de Sangre" },
-    { "id_area": 26, "nombre": "Farmacia" },
-    { "id_area": 27, "nombre": "Nutrición" },
-    { "id_area": 28, "nombre": "Fisioterapia" },
-    { "id_area": 29, "nombre": "Terapia Respiratoria" },
-    { "id_area": 30, "nombre": "Terapia Ocupacional" },
-    { "id_area": 31, "nombre": "Terapia del Lenguaje" },
-    { "id_area": 32, "nombre": "Anestesiología" },
-    { "id_area": 33, "nombre": "Consulta Externa" },
-    { "id_area": 34, "nombre": "Hospitalización" },
-    { "id_area": 35, "nombre": "Área Quirúrgica" },
-    { "id_area": 36, "nombre": "Patología" },
-    { "id_area": 37, "nombre": "Administración" },
-    { "id_area": 38, "nombre": "Archivo Clínico" },
-    { "id_area": 39, "nombre": "Atención al Usuario" },
-    { "id_area": 40, "nombre": "Finanzas" },
-    { "id_area": 41, "nombre": "Recursos Humanos" },
-    { "id_area": 42, "nombre": "Seguridad" },
-    { "id_area": 43, "nombre": "Limpieza" },
-    { "id_area": 44, "nombre": "Mantenimiento" },
-    { "id_area": 45, "nombre": "Sistemas" },
-    { "id_area": 46, "nombre": "Ingeniería Biomédica" },
-    { "id_area": 47, "nombre": "Educación Médica" },
-    { "id_area": 48, "nombre": "Investigación Clínica" },
-    { "id_area": 49, "nombre": "Epidemiología" },
-    { "id_area": 50, "nombre": "Auditoría Médica" },
-    { "id_area": 51, "nombre": "Calidad" },
-    { "id_area": 52, "nombre": "Gestión del Riesgo" },
-    { "id_area": 53, "nombre": "Planificación Estratégica" },
-    { "id_area": 54, "nombre": "Comunicación Interna" },
-    { "id_area": 55, "nombre": "Servicio Social" },
-    { "id_area": 56, "nombre": "Atención Domiciliaria" },
-    { "id_area": 57, "nombre": "Promoción y Prevención" },
-    { "id_area": 58, "nombre": "Transporte de Pacientes" },
-    { "id_area": 59, "nombre": "Central de Esterilización" },
-    { "id_area": 60, "nombre": "Control de Infecciones" },
-    { "id_area": 61, "nombre": "Medicina del Trabajo" },
-    { "id_area": 62, "nombre": "Urgencias Obstétricas" },
-    { "id_area": 63, "nombre": "Sala de Partos" },
-    { "id_area": 64, "nombre": "Neonatología" },
-    { "id_area": 65, "nombre": "Triage" },
-    { "id_area": 66, "nombre": "Ambulancias" },
-    { "id_area": 67, "nombre": "Sala de Espera" },
-    { "id_area": 68, "nombre": "Rehabilitación" },
-    { "id_area": 69, "nombre": "Salud Mental" },
-    { "id_area": 70, "nombre": "Vacunación" },
-    { "id_area": 71, "nombre": "Telemedicina" },
-    { "id_area": 72, "nombre": "Área COVID-19" },
-    { "id_area": 73, "nombre": "Consulta Virtual" },
-    { "id_area": 74, "nombre": "Educación al Paciente" },
-    { "id_area": 75, "nombre": "Evaluación Prequirúrgica" },
-    { "id_area": 76, "nombre": "Seguimiento Postquirúrgico" },
-    { "id_area": 77, "nombre": "Sala de Yesos" },
-    { "id_area": 78, "nombre": "Sala de Curaciones" },
-    { "id_area": 79, "nombre": "Pabellón de Cirugía" },
-    { "id_area": 80, "nombre": "Cuidados Paliativos" },
-    { "id_area": 81, "nombre": "Salud Ocupacional" },
-    { "id_area": 82, "nombre": "Diagnóstico por Imagen" },
-    { "id_area": 83, "nombre": "Pruebas de Esfuerzo" },
-    { "id_area": 84, "nombre": "Electrocardiograma" },
-    { "id_area": 85, "nombre": "Sala de Observación" },
-    { "id_area": 86, "nombre": "Control de Signos Vitales" },
-    { "id_area": 87, "nombre": "Educación Continua" },
-    { "id_area": 88, "nombre": "Área Legal" },
-    { "id_area": 89, "nombre": "Contratación Médica" },
-    { "id_area": 90, "nombre": "Aseguramiento" },
-    { "id_area": 91, "nombre": "Gestión de Proyectos" },
-    { "id_area": 92, "nombre": "TIC Salud" },
-    { "id_area": 93, "nombre": "Área de Donaciones" },
-    { "id_area": 94, "nombre": "Centro de Contacto" },
-    { "id_area": 95, "nombre": "Evaluación Psicológica" },
-    { "id_area": 96, "nombre": "Terapias Alternativas" },
-    { "id_area": 97, "nombre": "Atención Postoperatoria" },
-    { "id_area": 98, "nombre": "Pruebas de Laboratorio Especializadas" },
-    { "id_area": 99, "nombre": "Servicios Generales" },
-    { "id_area": 100, "nombre": "Área de Innovación Clínica" }
-]
+
 
 db.hospitales.insertMany([
     {
@@ -1318,22 +1219,6 @@ db.visitas.insertMany([
         fecha: new Date("2025-08-19T15:30:00Z")
     }
 ]);
-db.viitas.aggregate([
-    {
-        $lookup: {
-            from: "tratamientos",
-            localField: "id_visita",
-            foreignField: "id_pacientes",
-            as: "paciente"
-        }
-    },
-    {
-        $project: {
-            id_visita: 1,
-            id_enfermeros,
-        }
-    }
-])
 db.medicamentos.insertMany([
     { id_medicamento: 1, nombre: "Paracetamol", hospital: 1, inventario: 120, descripcion: "Analgésico y antipirético" },
     { id_medicamento: 2, nombre: "Ibuprofeno", hospital: 2, inventario: 85, descripcion: "Antiinflamatorio no esteroideo" },
@@ -2105,44 +1990,446 @@ db.areas.insertMany([
 
 
 
+
+db.infraestructura.insertMany([
+  {
+    "id_infraestructura": 1,
+    "id_hospital": 1,
+    "id_personas_mantenimiento": [9, 12],
+    "nombre_lugar": "Quirófano Principal",
+    "observacion": "Sistema de ventilación necesita mantenimiento",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 2,
+    "id_hospital": 1,
+    "id_personas_mantenimiento": [38],
+    "nombre_lugar": "Ascensor A",
+    "observacion": "Botones atascados",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 3,
+    "id_hospital": 2,
+    "id_personas_mantenimiento": [13, 1],
+    "nombre_lugar": "Sala de Emergencias",
+    "observacion": "Fuga en tuberías de agua",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 4,
+    "id_hospital": 2,
+    "id_personas_mantenimiento": [11],
+    "nombre_lugar": "Tejado Ala Oeste",
+    "observacion": "Goteras en temporada de lluvias",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 5,
+    "id_hospital": 3,
+    "id_personas_mantenimiento": [10, 11],
+    "nombre_lugar": "Laboratorio Clínico",
+    "observacion": "Aire acondicionado no funciona",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 6,
+    "id_hospital": 3,
+    "id_personas_mantenimiento": [14],
+    "nombre_lugar": "Baños Públicos Planta Baja",
+    "observacion": "Problemas en sistema de drenaje",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 7,
+    "id_hospital": 4,
+    "id_personas_mantenimiento": [11],
+    "nombre_lugar": "Sala de Espera Principal",
+    "observacion": "Pintura descascarada en paredes",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 8,
+    "id_hospital": 4,
+    "id_personas_mantenimiento": [25],
+    "nombre_lugar": "Ascensor B",
+    "observacion": "Puertas no cierran correctamente",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 9,
+    "id_hospital": 5,
+    "id_personas_mantenimiento": [14],
+    "nombre_lugar": "Cocina Institucional",
+    "observacion": "Horno industrial necesita revisión",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 10,
+    "id_hospital": 5,
+    "id_personas_mantenimiento": [20],
+    "nombre_lugar": "Estacionamiento Cubierto",
+    "observacion": "Puerta automática fallando",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 11,
+    "id_hospital": 6,
+    "id_personas_mantenimiento": [18],
+    "nombre_lugar": "Sala de Rayos X",
+    "observacion": "Problemas eléctricos",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 12,
+    "id_hospital": 6,
+    "id_personas_mantenimiento": [31],
+    "nombre_lugar": "Jardín Interior",
+    "observacion": "Sistema de riego dañado",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 13,
+    "id_hospital": 7,
+    "id_personas_mantenimiento": [7],
+    "nombre_lugar": "Consultorios Externos",
+    "observacion": "Ventanas con filtraciones",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 14,
+    "id_hospital": 7,
+    "id_personas_mantenimiento": [12],
+    "nombre_lugar": "Sistema de Emergencia",
+    "observacion": "Luces de emergencia no funcionan",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 15,
+    "id_hospital": 8,
+    "id_personas_mantenimiento": [9, 15],
+    "nombre_lugar": "Central de Esterilización",
+    "observacion": "Autoclave necesita mantenimiento",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 16,
+    "id_hospital": 8,
+    "id_personas_mantenimiento": [19],
+    "nombre_lugar": "Sala de Neonatología",
+    "observacion": "Control de temperatura fallando",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 17,
+    "id_hospital": 9,
+    "id_personas_mantenimiento": [2, 3],
+    "nombre_lugar": "Farmacia",
+    "observacion": "Estantes necesitan refuerzo",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 18,
+    "id_hospital": 9,
+    "id_personas_mantenimiento": [4],
+    "nombre_lugar": "Sala de Fisioterapia",
+    "observacion": "Piso dañado en área de ejercicios",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 19,
+    "id_hospital": 10,
+    "id_personas_mantenimiento": [8],
+    "nombre_lugar": "Unidad de Cuidados Intensivos",
+    "observacion": "Sistema de monitoreo necesita revisión",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 20,
+    "id_hospital": 10,
+    "id_personas_mantenimiento": [13],
+    "nombre_lugar": "Sala de Espera de Urgencias",
+    "observacion": "Asientos dañados",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 21,
+    "id_hospital": 11,
+    "id_personas_mantenimiento": [3, 8],
+    "nombre_lugar": "Laboratorio de Patología",
+    "observacion": "Extracción de aire no funciona",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 22,
+    "id_hospital": 11,
+    "id_personas_mantenimiento": [12],
+    "nombre_lugar": "Cuarto de Equipos",
+    "observacion": "Organización necesaria",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 23,
+    "id_hospital": 12,
+    "id_personas_mantenimiento": [5, 10],
+    "nombre_lugar": "Sala de Pediatría",
+    "observacion": "Paredes rayadas",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 24,
+    "id_hospital": 12,
+    "id_personas_mantenimiento": [14],
+    "nombre_lugar": "Pasillo Principal",
+    "observacion": "Iluminación deficiente",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 25,
+    "id_hospital": 13,
+    "id_personas_mantenimiento": [2, 9],
+    "nombre_lugar": "Consultorio 5",
+    "observacion": "Puerta no cierra bien",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 26,
+    "id_hospital": 13,
+    "id_personas_mantenimiento": [13],
+    "nombre_lugar": "Sala de Espera de Consultorios",
+    "observacion": "Televisor dañado",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 27,
+    "id_hospital": 14,
+    "id_personas_mantenimiento": [4, 7],
+    "nombre_lugar": "Unidad de Quemados",
+    "observacion": "Sistema de humidificación fallando",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 28,
+    "id_hospital": 14,
+    "id_personas_mantenimiento": [11],
+    "nombre_lugar": "Sala de Procedimientos",
+    "observacion": "Lámpara quirúrgica necesita cambio",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 29,
+    "id_hospital": 15,
+    "id_personas_mantenimiento": [6, 9],
+    "nombre_lugar": "Sala de Partos",
+    "observacion": "Equipos de monitoreo fetal necesitan revisión",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 30,
+    "id_hospital": 15,
+    "id_personas_mantenimiento": [15],
+    "nombre_lugar": "Almacén de Medicamentos",
+    "observacion": "Control de temperatura irregular",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 31,
+    "id_hospital": 16,
+    "id_personas_mantenimiento": [8, 13],
+    "nombre_lugar": "Sala de Hemodiálisis",
+    "observacion": "Sistema de purificación de agua necesita mantenimiento",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 32,
+    "id_hospital": 16,
+    "id_personas_mantenimiento": [17],
+    "nombre_lugar": "Pasillo de Hospitalización",
+    "observacion": "Barandas sueltas",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 33,
+    "id_hospital": 17,
+    "id_personas_mantenimiento": [10, 15],
+    "nombre_lugar": "Quirófano 2",
+    "observacion": "Mesa quirúrgica desnivelada",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 34,
+    "id_hospital": 17,
+    "id_personas_mantenimiento": [18],
+    "nombre_lugar": "Sala de Recuperación",
+    "observacion": "Cortinas dañadas",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 35,
+    "id_hospital": 18,
+    "id_personas_mantenimiento": [12, 16],
+    "nombre_lugar": "Unidad de Cardiología",
+    "observacion": "Equipos de monitoreo cardíaco necesitan calibración",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 36,
+    "id_hospital": 18,
+    "id_personas_mantenimiento": [19],
+    "nombre_lugar": "Sala de Espera de Especialistas",
+    "observacion": "Aire acondicionado ruidoso",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 37,
+    "id_hospital": 19,
+    "id_personas_mantenimiento": [14, 18],
+    "nombre_lugar": "Consultorio Dermatológico",
+    "observacion": "Lámpara de examen dañada",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 38,
+    "id_hospital": 19,
+    "id_personas_mantenimiento": [20],
+    "nombre_lugar": "Área de Lavandería",
+    "observacion": "Máquinas lavadoras necesitan mantenimiento",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 39,
+    "id_hospital": 20,
+    "id_personas_mantenimiento": [15, 19],
+    "nombre_lugar": "Sala de Endoscopía",
+    "observacion": "Equipos de videoendoscopía con fallas",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 40,
+    "id_hospital": 20,
+    "id_personas_mantenimiento": [21],
+    "nombre_lugar": "Cuarto de Equipos de Imagenología",
+    "observacion": "Organización y limpieza necesaria",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 41,
+    "id_hospital": 21,
+    "id_personas_mantenimiento": [6, 13],
+    "nombre_lugar": "Sala de Terapia Respiratoria",
+    "observacion": "Nebulizadores necesitan revisión",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 42,
+    "id_hospital": 21,
+    "id_personas_mantenimiento": [17],
+    "nombre_lugar": "Pasillo de Consultorios",
+    "observacion": "Piso resbaladizo",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 43,
+    "id_hospital": 22,
+    "id_personas_mantenimiento": [9, 15],
+    "nombre_lugar": "Sala de Cirugía Ambulatoria",
+    "observacion": "Iluminación quirúrgica deficiente",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 44,
+    "id_hospital": 22,
+    "id_personas_mantenimiento": [19],
+    "nombre_lugar": "Área de Cafetería",
+    "observacion": "Mesas y sillas dañadas",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 45,
+    "id_hospital": 23,
+    "id_personas_mantenimiento": [11, 14],
+    "nombre_lugar": "Unidad de Neonatología",
+    "observacion": "Incubadoras necesitan mantenimiento preventivo",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 46,
+    "id_hospital": 23,
+    "id_personas_mantenimiento": [20],
+    "nombre_lugar": "Sala de Lactancia",
+    "observacion": "Sillones reclinables dañados",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 47,
+    "id_hospital": 24,
+    "id_personas_mantenimiento": [13, 16],
+    "nombre_lugar": "Consultorio de Psicología",
+    "observacion": "Pintura descascarada",
+    "estado": "en reparacion"
+  },
+  {
+    "id_infraestructura": 48,
+    "id_hospital": 24,
+    "id_personas_mantenimiento": [21],
+    "nombre_lugar": "Sala de Reuniones",
+    "observacion": "Proyector no funciona",
+    "estado": "pendiente"
+  },
+  {
+    "id_infraestructura": 49,
+    "id_hospital": 25,
+    "id_personas_mantenimiento": [15, 18],
+    "nombre_lugar": "Unidad de Diálisis",
+    "observacion": "Sistema de filtración de agua necesita revisión",
+    "estado": "reparado"
+  },
+  {
+    "id_infraestructura": 50,
+    "id_hospital": 25,
+    "id_personas_mantenimiento": [22],
+    "nombre_lugar": "Área de Registro",
+    "observacion": "Computadoras lentas",
+    "estado": "en reparacion"
+  }
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #####################
+
+
+
 db.createView(
     "vista_pacientes_asignados",
     "visitas",
-    [{
-        $lookup: {
-            from: "tratamiento",
-            localField: "id_visita",
-            foreignField: "id_visita",
-            as: "tratamientos"
-        },
+    [
+    {
+         $lookup: {
+        from: "enfermeros",
+        localField: "id_enfermeros",
+        foreignField: "id_enfermeros",
+        as: "enfermeros"
     },
-    { $unwind: "$tratamientos"},
+    },
+    { $unwind: "$enfermeros"},
     {
         $lookup: {
-            from: "historiales",
-            localField: "tratamientos.id_historial",
-            foreignField: "id_historial",
-            as: "historiales"
-        },
-    },
-    { $unwind: "$historiales"},
-    {
-        $lookup: {
-            from: "pacientes",
-            localField: "historiales.id_paciente",
-            foreignField: "id_pacientes",
-            as: "pacientes"
-        },
-    },
-    { $unwind: "$pacientes"},
-    {
-        $project: { "pacientes.id_pacientes": 1, "pacientes.nombre": 1, enfermeros: 1 }
-    }
-    ]
-)
-
-db.visitas.aggregate( [{
-    $lookup: {
         from: "tratamientos",
         localField: "id_visita",
         foreignField: "id_visita",
@@ -2165,11 +2452,136 @@ db.visitas.aggregate( [{
         localField: "historiales.id_paciente",
         foreignField: "id_pacientes",
         as: "pacientes"
-    },
+    }
 },
 { $unwind: "$pacientes"},
-{
-    $project: { "pacientes.id_pacientes": 1, "pacientes.nombre": 1, id_enfermeros: 1 }
-}
+ {
+    $group: {
+    _id: "$enfermeros._id", 
+    enfermero: { $first: '$id_enfermeros' },
+    id_paciente:{$first: '$pacientes._id'}, 
+    pacientes:{$first: '$pacientes.nombre'}
+    }
+},
 ]
 )
+
+// Usuario: Director General (acceso total a todas las colecciones)
+db.createUser({
+  user: "directores",
+  pwd: "directores1",
+  roles: [{ role: "root", db: "admin" }]
+});
+
+// mongosh "mongodb://directores:directores1@localhost:27017/SistemaHospitalario"
+
+
+// Usuario: Médico Especialista (acceso a pacientes y diagnosticos)
+db.createRole({
+  role: "medico_rol",
+  privileges: [
+    {
+      resource: { db: "SistemaHospitalario", collection: "pacientes" },
+      actions: ["find", "insert", "update"]
+    },
+     {
+      resource: { db: "SistemaHospitalario", collection: "visitas" },
+      actions: ["find", "insert", "update"]
+    },
+     {
+      resource: { db: "SistemaHospitalario", collection: "tratamientos" },
+      actions: ["find", "insert", "update"]
+    },
+    {
+      resource: { db: "SistemaHospitalario", collection: "historiales" },
+      actions: ["find", "insert", "update"]
+    }
+  ],
+  roles: []
+});
+
+db.createUser({
+  user: "medico",
+  pwd: "medico1",
+  roles: [
+    { role: "medico_rol", db: "SistemaHospitalario" }
+  ]
+});
+
+// mongosh "mongodb://medico:medico1@localhost:27017/SistemaHospitalario"
+
+// Usuario: Enfermero/a (acceso solo a vista de pacientes asignados)
+db.createRole({
+  role: "enfermero_rol",
+  privileges: [
+    {
+      resource: { db: "SistemaHospitalario", collection: "vista_pacientes_asignados" },
+      actions: ["find"]
+    }
+  ],
+  roles: []
+});
+
+db.createUser({
+  user: "enfermero",
+  pwd: "enfermero1",
+  roles: [
+    { role: "enfermero_rol", db: "SistemaHospitalario" }
+  ]
+});
+
+// mongosh "mongodb://enfermero:enfermero1@localhost:27017/SistemaHospitalario"
+
+
+// Usuario: Personal Administrativo (gestión de recursos y logística)
+db.createRole({
+  role: "administrativo_rol",
+  privileges: [
+    {
+      resource: { db: "SistemaHospitalario", collection: "medicamentos" },
+      actions: ["find", "insert", "update"]
+    },
+    {
+      resource: { db: "SistemaHospitalario", collection: "areas" },
+      actions: ["find", "insert", "update"]
+    },
+    {
+      resource: { db: "SistemaHospitalario", collection: "hospitales" },
+      actions: ["find", "insert", "update"]
+    }
+  ],
+  roles: []
+});
+
+db.createUser({
+  user: "administrativo",
+  pwd: "administrativo1",
+  roles: [
+    { role: "administrativo_rol", db: "SistemaHospitalario" }
+  ]
+});
+
+// mongosh "mongodb://administrativo:administrativo1@localhost:27017/SistemaHospitalario"
+
+
+// Usuario: Personal de Mantenimiento (acceso a infraestructura)
+db.createRole({
+  role: "mantenimiento_rol",
+  privileges: [
+    {
+      resource: { db: "SistemaHospitalario", collection: "infraestructura" },
+      actions: ["find", "update"]
+    }
+  ],
+  roles: []
+});
+
+db.createUser({
+  user: "mantenimiento",
+  pwd: "mantenimiento1",
+  roles: [
+    { role: "mantenimiento_rol", db: "SistemaHospitalario" }
+  ]
+});
+
+// mongosh "mongodb://mantenimiento:mantenimiento1@localhost:27017/SistemaHospitalario"
