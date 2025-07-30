@@ -269,13 +269,6 @@ Para entender el diseño del modelo conceptual, se debe tener en cuenta los elem
 ❖ nombre  
 ❖ telefono
 
-15. infraestructura 
-❖ id_infraestructura
-❖ id_hospital
-❖ id_personas_mantenimiento
-❖ nombre_del_lugar
-❖ observacion
-❖ estado
 
  
 
@@ -436,9 +429,9 @@ mismo hospital.N-1 (muchos a uno).
 mismo hospital.N-1 (muchos a unos).
 
 ```
---|
+                     |--
 --|------------------|--
---|
+                     |--
 ```
 
 8. visita - tratamientos:
@@ -1317,6 +1310,21 @@ db.seguros.insertOne(
          id_seguro: 1, 
          nombre: "Seguros VidaPlus", 
          telefono: "6012345678"
+    }
+)
+```
+### Inserción de datos en la colección infraestructura
+Contiene los datos de los de infraestructra que cubren a los pacientes:
+```js
+db.infraestructura.insertOne(
+    {
+         id_infraestrctura: 1, 
+         id_hospital: 1, 
+         id_personas_mantenimiento:1,
+         nombre_lugar:"sala2 pediatria",
+         observacion:"muchas goteras",
+         estado:"en renovacion"
+
     }
 )
 ```
