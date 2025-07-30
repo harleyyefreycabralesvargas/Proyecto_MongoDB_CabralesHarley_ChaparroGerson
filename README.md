@@ -142,13 +142,31 @@ Con base en la información anterior, se procederá a crear una base de datos en
 
 ## Instalación General
 
-Los archivos relacionados con la BBDD de los hospitales, se encuentran en la plataforma <Githud>  estos archivos se encuentran en formato NoSQL y se dividen en 6 partes:
+Los archivos relacionados con la BBDD de los hospitales, se encuentran en la plataforma <Githud>  estos archivos se encuentran en formato Js y se dividen en 3 partes:
 
-❖ ModeloFisico.NoSQL : Este archivo contiene el script para crear la base de datos y definir las tablas correspondientes.  
-❖ Inserciones.NoSQL : Este archivo contiene ejemplos de datos para gestionar los parques naturales, facilitando la inserción inicial de información.  
-❖ usuarios.NoSQL : Aquí se gestionan la creación de usuarios y la asignación de permisos necesarios para acceder y visualizar los datos pertinentes.  
+❖ estructura de la BBDD.(ddl.js) : Este archivo contiene el script para crear la base de datos y definir las colecciones correspondientes.  
+❖ Inserciones(dml.js) : Este archivo contiene ejemplos de datos para gestionar el sistema hospitalario, facilitando la inserción inicial de información.  
+
+1. procedemos a bajar el repositorio en tu terminal 
+```bash
+git clone https://github.com/harleyyefreycabralesvargas/Proyecto_MongoDB_CabralesHarley_ChaparroGerson
+```
+2. abrir la terminal desde la carpeta donde se bajo el archivo y ejecutar lossiguentes comandos
+```bash
+
+mongosh < ddl.js 
+```
+luego de ejecutar el comando seguimos con este 
+```bash
+mongosh < dml.js
+
+```
+ya con estos comandos terminaos la estructura de la data con la inserciones
+
 
 ## Planificación
+## requisitos del sistema
+1. tener instalado mongosh en el sistema
 
 ## Ejecución
 
@@ -948,6 +966,9 @@ INFRAESTRUCTURA {
 MEDICOS {
         INT id_medicos PK
         STRING nombre
+        STRING correo
+        STRING telefono
+        STRING especialidad
         INT salario
         STRING tipo
     }
@@ -1011,6 +1032,8 @@ MANTENIMIENTO {
         INT[] id_medicamentos FK
         INT id_historial FK
         INT id_visita FK
+        INT[] areas
+        INT costo
         STRING nombre
         STRING valoracion
         DATE fecha
@@ -1020,6 +1043,9 @@ MEDICAMENTOS {
         STRING nombre
         INT inventario
         STRING descripcion
+        STRING fabricante
+        STRING tipo
+
     }
 
     HISTORIAL {
@@ -1033,6 +1059,7 @@ MEDICAMENTOS {
         STRING nombre
         INT edad
         STRING direccion
+        STRING correo
         INT id_seguro FK
         STRING telefono
     }
@@ -1506,7 +1533,7 @@ db.areas.deleteOne({ id_area: 2 })
 
 ```
 
-### Funcion #1
+## Funcion #1
 ### Descripcion 
 Esta operación permite insertar un nuevo documento en la colección medicamentos. La función recibe como parámetros el identificador del medicamento, el nombre, el hospital al que pertenece y la cantidad disponible en inventario, y luego crea el registro correspondiente en la base de datos.
 
@@ -1560,7 +1587,7 @@ function buscarMedicosPorSalarioMayorA(salario) {
 
 ### Usuarios y Acceso
 Estos usuarios y sus permisos han sido diseñados para gestionar las diferentes
-responsabilidades dentro de un sistema de administración de parques naturales. A
+responsabilidades dentro de un sistema de administración del sietma hospitalario. A
 continuación se presenta una tabla organizada con los usuarios, sus accesos, comandos
 permitidos, y funciones/procedimientos a los que tienen acceso.
 | Usuarios         | Descripción                                         | Procedimientos                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | URI                                                                                                  |

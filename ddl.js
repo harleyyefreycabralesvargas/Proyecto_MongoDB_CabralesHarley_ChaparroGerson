@@ -1,4 +1,4 @@
-use SitemaHospitalario;
+use SistemaHospitalario;
 
 db.createCollection("directores", {
     validator: {
