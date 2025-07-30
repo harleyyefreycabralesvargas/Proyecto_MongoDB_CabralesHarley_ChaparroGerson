@@ -1506,7 +1506,7 @@ permitidos, y funciones/procedimientos a los que tienen acceso.
 
 
 
-## 1. para acceder a los usuarios necesitamos crearlos sin  ninguna funcion
+## 1. Para acceder a los usuarios necesitamos crearlos sin  ninguna funcion
 ## 2.Activar el autorizamiento de usuarios
 ❖ Salimos de mongo con exit
 ❖ Vamos al archivo mongod con los 2 siguientes comandos sudo nano /etc/mongod.conf o nano /etc/mongod.conf y si pide contraseña la pondremos
@@ -1519,4 +1519,4 @@ security:
 ❖ Guardamos el archivo y aplicamos los cambios con el siguiente comando sudo systemctl restart mongod 
 ❖ Uris para acceder a los diferentes usuarios URI para admin: mongosh -u admin -p contrasena1 --authenticationDatabase admin URI para usuario1: mongosh -u usuario1 -p contrasena2 --authenticationDatabase clientes
 
-## 3. concederle las funciones y entrar con la uri
+## 3. concederle las funciones y entrar con la uri desde el shell

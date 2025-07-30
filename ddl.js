@@ -302,4 +302,5 @@ db.createCollection("infraestructura", {
     }
   }
 });
+ñ
 db.infraestructura.createIndex({ id_infraestructura: 1 }, { unique: true })

@@ -2198,7 +2198,7 @@ db.infraestructura.insertMany([
     "id_personas_mantenimiento": [13],
     "nombre_lugar": "Sala de Espera de Consultorios",
     "observacion": "Televisor dañado",
-    "estado": "pendiente"
+    "estado": "pendiene"
   },
   {
     "id_infraestructura": 27,
