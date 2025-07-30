@@ -21,6 +21,73 @@
                                        
 
 
+- [Introducción](#introducción)
+- [Caso de Estudio](#caso-de-estudio)
+  - [1. Estructura del Sistema](#1-estructura-del-sistema)
+  - [2. Pacientes](#2-pacientes)
+  - [3. Médicos y Personal](#3-médicos-y-personal)
+  - [4. Tratamientos y Medicamentos](#4-tratamientos-y-medicamentos)
+  - [5. Visitas Médicas](#5-visitas-médicas)
+- [Instalación General](#instalación-general)
+- [Planificación](#planificación)
+- [Ejecución](#ejecución)
+  - [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
+- [Descripción](#descripción)
+  - [Las Entidades y Atributos](#las-entidades-y-atributos)
+- [Relaciones y Cardinalidades](#relaciones-y-cardinalidades)
+- [Modelo conceptual](#modelo-conceptual)
+- [Construccion del modelo logico](#construccion-del-modelo-logico)
+  - [Las Entidades y Atributos](#las-entidades-y-atributos-1)
+  - [Relaciones y Cardinalidades](#relaciones-y-cardinalidades-1)
+  - [Construcción del Modelo Físico](#construcción-del-modelo-físico)
+  - [Descripción](#descripción-1)
+  - [Colecciones](#colecciones)
+  - [## Construcción del Diagrama UML](#-construcción-del-diagrama-uml)
+  - [Descripción](#descripción-2)
+  - [Grafica](#grafica)
+- [Descripción del sistema](#descripción-del-sistema)
+  - [Inserción de datos en la colección directores](#inserción-de-datos-en-la-colección-directores)
+  - [Inserción de datos en la colección medicos](#inserción-de-datos-en-la-colección-medicos)
+  - [Inserción de datos en la colección enfermeros](#inserción-de-datos-en-la-colección-enfermeros)
+  - [Inserción de datos en la colección administrativos](#inserción-de-datos-en-la-colección-administrativos)
+  - [Inserción de datos en la colección mantenimiento](#inserción-de-datos-en-la-colección-mantenimiento)
+  - [Inserción de datos en la colección hospitales](#inserción-de-datos-en-la-colección-hospitales)
+  - [Inserción de datos en la colección visitas](#inserción-de-datos-en-la-colección-visitas)
+  - [Inserción de datos en la colección tratamientos](#inserción-de-datos-en-la-colección-tratamientos)
+  - [Inserción de datos en la colección medicamentos](#inserción-de-datos-en-la-colección-medicamentos)
+  - [Inserción de datos en la colección historial](#inserción-de-datos-en-la-colección-historial)
+  - [Inserción de datos en la colección pacientes](#inserción-de-datos-en-la-colección-pacientes)
+  - [Inserción de datos en la colección seguros](#inserción-de-datos-en-la-colección-seguros)
+  - [Consultas de Datos](#consultas-de-datos)
+- [Consulta #1](#consulta-1)
+  - [Descripción](#descripción-3)
+- [Consulta #2](#consulta-2)
+  - [Descripcion](#descripcion)
+- [Consulta #3](#consulta-3)
+  - [Descripcion](#descripcion-1)
+- [Consulta #4](#consulta-4)
+  - [Descripcion](#descripcion-2)
+- [Consulta #5](#consulta-5)
+  - [Descripcion](#descripcion-3)
+- [Consulta #6](#consulta-6)
+  - [Descripcion](#descripcion-4)
+- [Consulta 7](#consulta-7)
+  - [Descripcion](#descripcion-5)
+- [Consulta #8](#consulta-8)
+  - [Descripcion](#descripcion-6)
+- [Consulta #9](#consulta-9)
+  - [Descripcion](#descripcion-7)
+- [Consulta #10](#consulta-10)
+  - [Descripcion](#descripcion-8)
+  - [Funcion #1](#funcion-1)
+  - [Descripcion](#descripcion-9)
+- [Funcion #2](#funcion-2)
+- [Descripcion](#descripcion-10)
+  - [Usuarios y Acceso](#usuarios-y-acceso)
+- [1. Crear usuarios sin funciones (previo a activar autenticación)](#1-crear-usuarios-sin-funciones-previo-a-activar-autenticación)
+- [2. Activar la autenticación de usuarios](#2-activar-la-autenticación-de-usuarios)
+- [3. Acceder a MongoDB con autenticación](#3-acceder-a-mongodb-con-autenticación)
+
 
 
 
@@ -1502,9 +1569,7 @@ permitidos, y funciones/procedimientos a los que tienen acceso.
 | Médico           | Acceso pacientes<br>y diagnósticos                  | db.createRole({<br>&nbsp;&nbsp;role: "medico_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "pacientes" }, actions: ["find", "insert", "update"] },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "visitas" }, actions: ["find", "insert", "update"] },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "tratamientos" }, actions: ["find", "insert", "update"] },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "diagnosticos" }, actions: ["find", "insert", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "medico",<br>&nbsp;&nbsp;pwd: "medico1",<br>&nbsp;&nbsp;roles: [{ role: "medico_rol", db: "SistemaHospitalario" }]<br>}); | mongosh "mongodb://medico:medico1@localhost:27017/SistemaHospitalario"                               |
 | Enfermero/a      | Acceso solo a vista de pacientes asignados          | db.createRole({<br>&nbsp;&nbsp;role: "enfermero_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "vista_pacientes_asignados" }, actions: ["find"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "enfermero",<br>&nbsp;&nbsp;pwd: "enfermero1",<br>&nbsp;&nbsp;roles: [{ role: "enfermero_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                                                                                                                          | mongosh "mongodb://enfermero:enfermero1@localhost:27017/SistemaHospitalario"                         |
 | Administrativo   | Gestión de recursos y logística                     | db.createRole({<br>&nbsp;&nbsp;role: "administrativo_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "medicamentos" }, actions: ["find", "insert", "update"] },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "areas" }, actions: ["find", "insert", "update"] },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "hospitales" }, actions: ["find", "insert", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "administrativo",<br>&nbsp;&nbsp;pwd: "administrativo1",<br>&nbsp;&nbsp;roles: [{ role: "administrativo_rol", db: "SistemaHospitalario" }]<br>});  | mongosh "mongodb://administrativo:administrativo1@localhost:27017/SistemaHospitalario"              |
-| Mantenimiento    | Acceso a infraestructura                           | db.createRole({<br>&nbsp;&nbsp;role: "mantenimiento_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "infraestructura" }, actions: ["find", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "mantenimiento",<br>&nbsp;&nbsp;pwd: "mantenimiento1",<br>&nbsp;&nbsp;roles: [{ role: "mantenimiento_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                                                                                                              | mongosh "mongodb://mantenimiento:mantenimiento1@localhost:27017/SistemaHospitalario"                 |
-
-
+| Mantenimiento    | Acceso a infraestructura                           | db.createRole({<br>&nbsp;&nbsp;role: "mantenimiento_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "infraestructura" }, actions: ["find", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "mantenimiento",<br>&nbsp;&nbsp;pwd: "mantenimiento1",<br>&nbsp;&nbsp;roles: [{ role: "mantenimiento_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                     - [Introducción](#introducción)
 
 
 ## 1. Crear usuarios sin funciones (previo a activar autenticación)
