@@ -1525,17 +1525,27 @@ db.createUser({
 })
 ```
 
-## 2.Activar el autorizamiento de usuarios
-❖ Salimos de mongo con exit
-❖ Vamos al archivo mongod con los 2 siguientes comandos sudo nano /etc/mongod.conf o nano /etc/mongod.conf y si pide contraseña la pondremos
-❖ Agregamos el siguiente texto al final del archivo
+## 1. Crear usuarios sin funciones (previo a activar autenticación)
+Antes de activar la autenticación, es necesario crear los usuarios sin roles, para luego asignárselos una vez el sistema esté configurado.
 
+Ejemplo:
 ```js
-security:
-  authorization: enabled
+
+use admin
+db.createUser({
+  user: "admin",
+  pwd: "contrasena1",
+  roles: []
+})
+
+use clientes
+db.createUser({
+  user: "usuario1",
+  pwd: "contrasena2",
+  roles: []
+})
+
 ```
-❖ Guardamos el archivo y aplicamos los cambios con el siguiente comando sudo systemctl restart mongod 
-❖ Uris para acceder a los diferentes usuarios URI para admin: mongosh -u admin -p contrasena1 --authenticationDatabase admin URI para usuario1: mongosh -u usuario1 -p contrasena2 --authenticationDatabase clientes
 
 ## 2. Activar la autenticación de usuarios
 ❖ Salir del shell de MongoDB
