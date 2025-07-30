@@ -205,13 +205,12 @@ db.createCollection("medicamentos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["id_medicamento", "nombre", "hospital", "inventario", "descripcion"],
+            required: ["id_medicamento", "nombre", "hospital", "inventario"],
             properties: {
                 id_medicamento: { bsonType: "int" },
                 nombre: { bsonType: "string" },
                 hospital:{bsonType:"int"},
                 inventario: { bsonType: "int" },
-                descripcion: { bsonType: "string" },
             },
         },
     },
