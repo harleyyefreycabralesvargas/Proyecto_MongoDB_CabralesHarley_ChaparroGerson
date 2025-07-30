@@ -1505,7 +1505,26 @@ permitidos, y funciones/procedimientos a los que tienen acceso.
 | Mantenimiento    | Acceso a infraestructura                           | db.createRole({<br>&nbsp;&nbsp;role: "mantenimiento_rol",<br>&nbsp;&nbsp;privileges: [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ resource: { db: "SistemaHospitalario", collection: "infraestructura" }, actions: ["find", "update"] }<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;roles: []<br>});<br><br>db.createUser({<br>&nbsp;&nbsp;user: "mantenimiento",<br>&nbsp;&nbsp;pwd: "mantenimiento1",<br>&nbsp;&nbsp;roles: [{ role: "mantenimiento_rol", db: "SistemaHospitalario" }]<br>});                                                                                                                                                                                                                                                                                                                                                              | mongosh "mongodb://mantenimiento:mantenimiento1@localhost:27017/SistemaHospitalario"                 |
 
 
-### 1. Para acceder a los usuarios necesitamos crearlos sin  ninguna funcion
+### 1. Crear usuarios sin funciones (previo a activar autenticación)
+Antes de activar la autenticación, es necesario crear los usuarios sin roles, para luego asignárselos una vez el sistema esté configurado.
+
+Ejemplo:
+```js
+use admin
+db.createUser({
+  user: "admin",
+  pwd: "contrasena1",
+  roles: []
+})
+
+use clientes
+db.createUser({
+  user: "usuario1",
+  pwd: "contrasena2",
+  roles: []
+})
+```
+
 ## 2.Activar el autorizamiento de usuarios
 ❖ Salimos de mongo con exit
 ❖ Vamos al archivo mongod con los 2 siguientes comandos sudo nano /etc/mongod.conf o nano /etc/mongod.conf y si pide contraseña la pondremos
@@ -1518,4 +1537,34 @@ security:
 ❖ Guardamos el archivo y aplicamos los cambios con el siguiente comando sudo systemctl restart mongod 
 ❖ Uris para acceder a los diferentes usuarios URI para admin: mongosh -u admin -p contrasena1 --authenticationDatabase admin URI para usuario1: mongosh -u usuario1 -p contrasena2 --authenticationDatabase clientes
 
-## 3. concederle las funciones y entrar con la uri desde el shell
+## 2. Activar la autenticación de usuarios
+❖ Salir del shell de MongoDB
+
+```js
+exit
+```
+```js
+
+sudo nano /etc/mongod.conf
+```
+
+
+
+nano /etc/mongod.conf
+ ❖ Agregar la sección de seguridad al final del archivo:
+```js
+
+security:
+  authorization: enabled
+```
+❖ Guardar los cambios y reiniciar MongoDB:
+```js
+sudo systemctl restart mongod
+```
+## 3. Acceder a MongoDB con autenticación
+Una vez activada la autenticación, usa las siguientes URIs para conectarte según el usuario:
+
+URI para el usuario administrador:
+```js
+mongodb://administrativo:administrativo1@localhost:27017/
+```
