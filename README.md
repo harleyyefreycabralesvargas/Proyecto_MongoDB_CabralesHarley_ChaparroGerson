@@ -608,7 +608,49 @@ db.createCollection("areas", {
     }
 });
 ```
-7. Creación de la coleccion hospitales
+7. Creación de la coleccion areas
+```js
+db.createCollection("infraestructura", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "id_infraestructura",
+        "id_hospital",
+        "id_personas_mantenimiento",
+        "nombre_lugar",
+        "observacion",
+        "estado"
+      ],
+      properties: {
+        id_infraestructura: {
+          bsonType: "int"
+        },
+        id_hospital: {
+          bsonType: "int"
+        },
+        id_personas_mantenimiento: {
+            bsonType: "array",
+            items: {
+                bsonType: "int",
+            },
+        },
+        nombre_lugar: {
+          bsonType: "string"
+        },
+        observacion: {
+          bsonType: "string"
+        },
+        estado: {
+          bsonType: "string",
+          enum: ["pendiente", "en reparacion", "reparado"]
+        }
+      }
+    }
+  }
+});
+```
+8. Creación de la coleccion hospitales
 ```js
 db.createCollection("hospitales", {
     validator: {
@@ -650,7 +692,7 @@ db.createCollection("hospitales", {
     }
 });
 ```
-8. Creación de la coleccion visitas
+9. Creación de la coleccion visitas
 ```js
 db.createCollection("visitas", {
     validator: {
@@ -672,7 +714,7 @@ db.createCollection("visitas", {
     }
 });
 ```
-9. Creación de la coleccion meedicamentos
+10. Creación de la coleccion meedicamentos
 ```js
 db.createCollection("medicamentos", {
     validator: {
@@ -690,7 +732,7 @@ db.createCollection("medicamentos", {
     },
 })
 ```
-10. Creación de la coleccion tratamiento
+11. Creación de la coleccion tratamiento
 ```js
 db.createCollection("tratamientos", {
     validator: {
@@ -715,7 +757,7 @@ db.createCollection("tratamientos", {
     },
 })
 ```
-11. Creación de la coleccion historiales
+12. Creación de la coleccion historiales
 ```js
 db.createCollection("historiales", {
     validator: {
@@ -731,7 +773,7 @@ db.createCollection("historiales", {
     },
 })
 ```
-12. Creación de la coleccion pacientes
+13. Creación de la coleccion pacientes
 ```js
 db.createCollection("pacientes", {
     validator: {
@@ -751,7 +793,7 @@ db.createCollection("pacientes", {
 });
 
 ```
-13. Creación de la coleccion seguros
+14. Creación de la coleccion seguros
 ```js
 db.createCollection("seguros", {
     validator: {
