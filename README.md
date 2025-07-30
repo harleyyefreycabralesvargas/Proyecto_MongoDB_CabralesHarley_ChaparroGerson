@@ -34,8 +34,8 @@
   - [Construcción del Modelo Conceptual](#construcción-del-modelo-conceptual)
 - [Descripción](#descripción)
   - [Las Entidades y Atributos](#las-entidades-y-atributos)
-- [Relaciones y Cardinalidades](#relaciones-y-cardinalidades)
-- [Modelo conceptual](#modelo-conceptual)
+  - [Relaciones y Cardinalidades](#relaciones-y-cardinalidades)
+  - [Modelo conceptual](#modelo-conceptual)
 - [Construccion del modelo logico](#construccion-del-modelo-logico)
   - [Las Entidades y Atributos](#las-entidades-y-atributos-1)
   - [Relaciones y Cardinalidades](#relaciones-y-cardinalidades-1)
@@ -245,18 +245,18 @@ Para entender el diseño del modelo conceptual, se debe tener en cuenta los elem
 ❖ valoracion
 ❖ fecha  
 
-11. medicamento  
+10. medicamento  
 ❖ id_medicamentos  
 ❖ nombre  
 ❖ inventario  
 ❖ descripcion  
 
-12. historial  
+11. historial  
 ❖ id_historial  
 ❖ id_paciente  
 ❖ id_tratamiento  
 
-13. paciente  
+12. paciente  
 ❖ id_paciente  
 ❖ nombre  
 ❖ edad  
@@ -264,20 +264,20 @@ Para entender el diseño del modelo conceptual, se debe tener en cuenta los elem
 ❖ id_seguro  
 ❖ telefono  
 
-14. seguro  
+13. seguro  
 ❖ id_seguro  
 ❖ nombre  
-❖ telefono  
+❖ telefono
 
-## Relaciones y Cardinalidades
+15. infraestructura 
+❖ id_infraestructura
+❖ id_hospital
+❖ id_personas_mantenimiento
+❖ nombre_del_lugar
+❖ observacion
+❖ estado
 
-Se realizó las relaciones y cardinalidades respectivas del modelo conceptual con sus entidades para tener mejor visualización de la base de datos:
-
-- Hospital – Área: 1 hospital → muchas áreas.  
-- Hospital – Personal: 1 hospital → muchos empleados.  
-- Hospital – Director: 1 hospital → 1 director (que es parte del personal).  
-- Paciente – Historial Clínico: 1 paciente → 1 historial (que puede tener muchos diagnósticos y tratamientos).  
-- Visita Médica – Paciente: muchos a 1 (varias visitas para un mismo paciente y un mismo médico puede atender muchas visitas).  
+ 
 
 ## Modelo conceptual
 
@@ -523,7 +523,7 @@ db.createCollection("medicos", {
     },
 })
 ```
-1. Creación de la coleccion enfermeros
+2. Creación de la coleccion enfermeros
 ```js
 db.createCollection("enfermeros", {
     validator: {
@@ -540,7 +540,7 @@ db.createCollection("enfermeros", {
     }
 });
 ```
-1. Creación de la coleccion administrativos
+3. Creación de la coleccion administrativos
 ```js
 db.createCollection("administrativos", {
     validator: {
@@ -558,7 +558,7 @@ db.createCollection("administrativos", {
     },
 })
 ```
-1. Creación de la coleccion directores
+4. Creación de la coleccion directores
 ```js
 db.createCollection("directores", {
     validator: {
@@ -576,7 +576,7 @@ db.createCollection("directores", {
     },
 })
 ```
-1. Creación de la coleccion mantenimiento
+5. Creación de la coleccion mantenimiento
 ```js
 db.createCollection("mantenimiento", {
     validator: {
@@ -593,7 +593,7 @@ db.createCollection("mantenimiento", {
     },
 })
 ```
-1. Creación de la coleccion areas
+6. Creación de la coleccion areas
 ```js
 db.createCollection("areas", {
     validator: {
@@ -608,7 +608,7 @@ db.createCollection("areas", {
     }
 });
 ```
-1. Creación de la coleccion hospitales
+7. Creación de la coleccion hospitales
 ```js
 db.createCollection("hospitales", {
     validator: {
@@ -650,7 +650,7 @@ db.createCollection("hospitales", {
     }
 });
 ```
-1. Creación de la coleccion visitas
+8. Creación de la coleccion visitas
 ```js
 db.createCollection("visitas", {
     validator: {
@@ -672,7 +672,7 @@ db.createCollection("visitas", {
     }
 });
 ```
-1. Creación de la coleccion meedicamentos
+9. Creación de la coleccion meedicamentos
 ```js
 db.createCollection("medicamentos", {
     validator: {
@@ -690,7 +690,7 @@ db.createCollection("medicamentos", {
     },
 })
 ```
-1. Creación de la coleccion tratamiento
+10. Creación de la coleccion tratamiento
 ```js
 db.createCollection("tratamientos", {
     validator: {
@@ -715,7 +715,7 @@ db.createCollection("tratamientos", {
     },
 })
 ```
-1. Creación de la coleccion historiales
+11. Creación de la coleccion historiales
 ```js
 db.createCollection("historiales", {
     validator: {
@@ -731,7 +731,7 @@ db.createCollection("historiales", {
     },
 })
 ```
-1. Creación de la coleccion pacientes
+12. Creación de la coleccion pacientes
 ```js
 db.createCollection("pacientes", {
     validator: {
@@ -751,7 +751,7 @@ db.createCollection("pacientes", {
 });
 
 ```
-1. Creación de la coleccion seguros
+13. Creación de la coleccion seguros
 ```js
 db.createCollection("seguros", {
     validator: {
