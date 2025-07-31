@@ -87,7 +87,7 @@
 - [1. Crear usuarios sin funciones (previo a activar autenticación)](#1-crear-usuarios-sin-funciones-previo-a-activar-autenticación)
 - [2. Activar la autenticación de usuarios](#2-activar-la-autenticación-de-usuarios)
 - [3. Acceder a MongoDB con autenticación](#3-acceder-a-mongodb-con-autenticación)
-- [Video Explicacion)
+- [Video Explicacion]
 
 
 
