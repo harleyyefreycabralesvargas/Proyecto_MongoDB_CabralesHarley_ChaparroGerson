@@ -39,7 +39,7 @@
 - [Construccion del modelo logico](#construccion-del-modelo-logico)
   - [Las Entidades y Atributos](#las-entidades-y-atributos-1)
   - [Relaciones y Cardinalidades](#relaciones-y-cardinalidades-1)
-  - [Construcción del Modelo Físico](#construcción-del-modelo-físico)
+- [Construcción del Modelo Físico](#construcción-del-modelo-físico)
   - [Descripción](#descripción-1)
   - [Colecciones](#colecciones)
 - [Construcción del Diagrama UML](#construcción-del-diagrama-uml)
@@ -87,6 +87,7 @@
 - [1. Crear usuarios sin funciones (previo a activar autenticación)](#1-crear-usuarios-sin-funciones-previo-a-activar-autenticación)
 - [2. Activar la autenticación de usuarios](#2-activar-la-autenticación-de-usuarios)
 - [3. Acceder a MongoDB con autenticación](#3-acceder-a-mongodb-con-autenticación)
+- [Video Explicacion)
 
 
 
@@ -1702,3 +1703,6 @@ URI para el usuario administrador:
 ```js
 mongodb://administrativo:administrativo1@localhost:27017/
 ```
+
+## Video Explicacion
+1.https://drive.google.com/drive/folders/1WDnLJnY2K_e75U1v5CKxfk-ZfDx4kGHU?usp=sharing
